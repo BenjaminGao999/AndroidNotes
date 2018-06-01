@@ -1,0 +1,56 @@
+appbar,toolbar
+
+# activity, fragment 都可以设置menu
+
+## fragment有 
+
+
+    setHasOptionsMenu(true);
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_clear:
+                mPresenter.clearCompletedTasks();
+                break;
+            case R.id.menu_filter:
+                showFilteringPopUpMenu();
+                break;
+            case R.id.menu_refresh:
+                mPresenter.loadTasks(true);
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.tasks_fragment_menu, menu);
+    }
+
+
+
+
+## activity有 
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Open the navigation drawer when the home icon is selected from the toolbar.
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+## 这个toolbar 样式是固定的， 所以定制化会收到限制
+
+
+
+
+

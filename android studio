@@ -1,0 +1,28 @@
+android studio 
+
+
+# 如何配置一个代码模版， 可以实现那种分行的效果呢？
+
+https://www.jianshu.com/p/3dac8317c687
+
+
+# android studio 和 gradle自己
+
+gradle本身自己也是一个编程框架， 也可以写代码， 
+gradle.properties 就是用来配置gradle自己的代码，代码参数的
+
+就是指定gradle所依赖的项目
+buildScript{
+	dependencied{
+
+	classpth xxx
+
+	}
+}
+
+
+
+## 代码全屏
+
+ctrl+shift+f12
+

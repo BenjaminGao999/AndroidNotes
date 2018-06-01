@@ -1,0 +1,8 @@
+dialog
+
+
+## 独立的windows
+Note that dialogs are generally autonomous entities -- they are their own window, receiving their own input events, and often deciding on their own when to disappear (by receiving a back key event or the user clicking on a button).
+
+
+s

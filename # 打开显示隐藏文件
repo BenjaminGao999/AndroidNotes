@@ -1,0 +1,14 @@
+# 打开显示隐藏文件
+
+
+显示
+defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
+
+
+隐藏 
+defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
+
+
+# 重启访达
+option + 右键选择重启
+

@@ -1,0 +1,44 @@
+recyclerView 
+
+
+
+ /**
+         * Called when a view created by this adapter has been attached to a window.
+         *
+         * <p>This can be used as a reasonable signal that the view is about to be seen
+         * by the user. If the adapter previously freed any resources in
+         * {@link #onViewDetachedFromWindow(RecyclerView.ViewHolder) onViewDetachedFromWindow}
+         * those resources should be restored here.</p>
+         *
+         * @param holder Holder of the view being attached
+         */
+        public void onViewAttachedToWindow(VH holder) {
+        }
+
+
+注意是 holder
+不是 adapter
+
+adapter可以有很多类型的holder
+
+
+
+        /**
+         * Called when a view created by this adapter has been detached from its window.
+         *
+         * <p>Becoming detached from the window is not necessarily a permanent condition;
+         * the consumer of an Adapter's views may choose to cache views offscreen while they
+         * are not visible, attaching and detaching them as appropriate.</p>
+         *
+         * @param holder Holder of the view being detached
+         */
+        public void onViewDetachedFromWindow(VH holder) {
+        }
+
+## 我可以利用周的想法再结合我自己的想法， 就可以封装一个pullToRefreshRecyclerView控件了。
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+高德地图开发指南
+
+## 地理/逆地理编码
+
+http://lbs.amap.com/api/webservice/guide/api/georegeo/
+
+
+## 6.0, 8.0 的定位和权限申请
+
+6.0权限申请
+https://lbs.amap.com/api/android-location-sdk/guide/utilities/permission
+
+
+8.0后台应用定位频率限制
+https://lbs.amap.com/api/android-location-sdk/guide/utilities/permision_8
+
+

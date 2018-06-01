@@ -1,0 +1,35 @@
+ripple 水波纹效果
+
+drawable-v21/recycler_item_selector.xml (v21版本以上)
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+        android:color="@color/colorPrimary"> // ripple color
+
+
+    <item android:drawable="@color/write"/> // defalut color 
+</ripple>
+
+
+
+drawable/recycler_item_selector.xml (v21版本以下的没有水波纹效果)
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/colorPrimary" android:state_pressed="true"/>
+    <item android:drawable="@color/colorPrimary" android:state_focused="true"/>
+    <item android:drawable="@color/write"/>
+</selector>
+
+
+https://blog.csdn.net/REIGE/article/details/68957994
+
+https://www.jianshu.com/p/3339f0ebb335
+
+## 遇到RelativeLayout等设置background， 记得 clickable 设置为 true
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:clickable="true"
+    android:background="@drawable/me_selector_item">
+
+    

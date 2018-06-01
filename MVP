@@ -1,0 +1,45 @@
+mvp到底是啥？
+
+怎么个思路， 怎么写？
+
+到目前为止我只知道
+
+module
+
+view 
+
+presenter
+
+
+并且他们的调用关系是；
+
+module <=> presenter <=> view 
+
+
+## google todo-mvp
+
+https://github.com/googlesamples/android-architecture/tree/todo-mvp
+
+
+presenter并不会去做具体的事情，
+她只是负责协调 view 和 module 
+
+view 可以是 fragment, 负责数据展示、界面交互、以及页面跳转；
+
+module是无需写接口的， 封装数据并暴露方法给presenter即可；
+
+所以mvp中的写接口，针对的是界面交互接口；
+
+
+view写的接口是在presenter中被调用的；
+presenter写的接口是在view中被调用的；
+
+module写的方法是在presenter中被调用的；
+
+
+
+
+## 并且mvp和mvc可以混用的
+
+简单的页面逻辑， 直接用mvc就可以了；
+

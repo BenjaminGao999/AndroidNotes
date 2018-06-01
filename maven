@@ -1,0 +1,127 @@
+maven 
+
+
+### official 
+Check environment variable value
+echo $JAVA_HOME
+/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
+
+Adding to PATH
+export PATH=/opt/apache-maven-3.5.3/bin:$PATH
+
+
+### mine 
+
+maven path
+/Users/benjamin/ProgramFiles/apache-maven-3.5.3/bin
+
+
+add maven to path
+
+export PATH=/Users/benjamin/ProgramFiles/apache-maven-3.5.3/bin:$PATH
+
+
+
+## 
+
+
+### 怎么用？
+
+maven 的 archetype 插件建立了一个 helloworld 目录，这个名字来自 artifactId 。
+在这个目录下面，有一个 Project Object Model(POM) 文件 pom.xml 。
+这个文件用于描述项目，配置插件和管理依赖关系。
+
+
+
+### 一个maven的helloworl项目
+http://www.oracle.com/technetwork/cn/community/java/apache-maven-getting-started-1-406235-zhs.html
+
+
+
+mvn package  
+			编译打包
+
+
+ 这个时候， maven 在 helloworld 下面建立了一个新的目录 target/ ，构建打包后的 jar 文件 helloworld-1.0-SNAPSHOT.jar 就存放在这个目录下。编译后的 class 文件放在 target/classes/ 目录下面，测试 class 文件放在 target/test-classes/ 目录下面。
+
+
+
+# maven 核心概念
+
+
+
+接下来我们介绍下面这几个核心概念：
+
+
+POM (Project Object Model)
+Maven 插件
+Maven 生命周期
+Maven 依赖管理
+Maven 库
+
+
+
+http://www.oracle.com/technetwork/cn/community/java/apache-maven-getting-started-2-405568-zhs.html
+
+
+
+
+### maven库
+当 maven 查找需要的 jar 文件时，它会先在本地库中寻找，只有在找不到的情况下，才会去远程库中找。
+
+
+
+
+运行下面的命令能把我们的 helloworld 项目安装到本地库：
+
+     $mvn install
+
+一旦一个项目被安装到了本地库后，你别的项目就可以通过 maven 坐标和这个项目建立依赖关系。比如如果我现在有一个新项目需要用到 helloworld，那么在运行了上面的 mvn install 命令后，我就可以如下所示来建立依赖关系：
+
+Xml 代码
+
+    <dependency>
+      <groupId>com.mycompany.helloworld</groupId>
+      <artifactId>helloworld</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency> 
+
+好了，maven 的核心概念就简单的介绍到这里。至于在 Eclipse 中如何使用 maven，这个网上很多了，google 一下就行。
+
+
+
+
+
+
+
+# maven 和 android studio 结合使用
+
+http://blog.bugtags.com/2016/01/27/embrace-android-studio-maven-deploy/
+
+
+## .m2的maven不是凭空就有的， 需要创建的
+
+第一步， 安装maven 
+
+第二步， 通过
+http://www.oracle.com/technetwork/cn/community/java/apache-maven-getting-started-1-406235-zhs.html
+
+创建一个helloWorld项目；
+就会在当前用的根根目录下创建.m2文件夹了
+我的
+/Users/benjamin/.m2/repository
+
+
+
+
+
+
+
+# gradle 和 maven 
+
+
+
+
+
+
+

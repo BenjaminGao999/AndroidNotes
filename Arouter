@@ -1,0 +1,16 @@
+Arouter
+
+## 需要关闭instantRun
+
+否则报错
+
+W/ARouter::: ARouter::No postcard![ThreadId=1 & ThreadName=main & FileName=_ARouter.java & ClassName=com.alibaba.android.arouter.launcher._ARouter & MethodName=navigation & LineNumber=232 ] 
+W/ARouter::: ARouter::No postcard![ThreadId=1 & ThreadName=main & FileName=_ARouter.java & ClassName=com.alibaba.android.arouter.launcher._ARouter & MethodName=navigation & LineNumber=232 ] 
+W/ARouter::: ARouter::There is no route match the path [/test/1], in group [test][ThreadId=1 & ThreadName=main & FileName=_ARouter.java & ClassName=com.alibaba.android.arouter.launcher._ARouter & MethodName=navigation & LineNumber=249 ] 
+
+
+
+## 鉴定是否是编译器的问题，
+可以运行下官方的demo排除下
+
+

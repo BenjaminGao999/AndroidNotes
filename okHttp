@@ -1,0 +1,88 @@
+okHttp 
+
+
+Response caching uses HTTP headers for all configuration. You can add request headers like Cache-Control: max-stale=3600 and OkHttp's cache will honor them. Your webserver configures how long responses are cached with its own response headers, like Cache-Control: max-age=9600. There are cache headers to force a cached response, force a network response, or force the network response to be validated with a conditional GET.
+
+
+
+
+
+## cache 
+
+通过interceptor 
+
+可以给 request 和 response 添加 cache-control字段；
+
+
+```Java
+/**
+ * Interceptor to cache data and maintain it for a minute.
+ *
+ * If the same network request is sent within a minute,
+ * the response is retrieved from cache.
+ */
+private static class ResponseCacheInterceptor implements Interceptor {
+    @Override
+    public okhttp3.Response intercept(Chain chain) throws IOException {
+        okhttp3.Response originalResponse = chain.proceed(chain.request());
+            return originalResponse.newBuilder()
+                    .header("Cache-Control", "public, max-age=" + 60)
+                    .build();
+    }
+}
+```
+
+
+```Java
+/**
+ * Interceptor to cache data and maintain it for four weeks.
+ *
+ * If the device is offline, stale (at most four weeks old)
+ * response is fetched from the cache.
+ */
+private static class OfflineResponseCacheInterceptor implements Interceptor {
+    @Override
+    public okhttp3.Response intercept(Chain chain) throws IOException {
+        Request request = chain.request();
+        if (!UtilityMethods.isNetworkAvailable()) {
+            request = request.newBuilder()
+                    .header("Cache-Control",
+                      "public, only-if-cached, max-stale=" + 2419200)
+                    .build();
+        }
+        return chain.proceed(request);
+    }
+}
+```
+
+
+
+
+More general, if you always want to use local cache when ever there is no Internet:
+
+public class ForceCacheInterceptor implements Interceptor {
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+        Request.Builder builder = chain.request().newBuilder();
+        if (!NetworkUtils.internetAvailable()) {
+            builder.cacheControl(CacheControl.FORCE_CACHE);
+        }
+        
+        return chain.proceed(builder.build());
+    }
+}
+okHttpClient.addInterceptor(new ForceCacheInterceptor());
+Note that this interceptor must be add as an application interceptor. If we add it as a network interceptor, it will has no chance to get trigger.
+
+
+## 先指定 Cache-Control
+
+## 再指定无网络环境下走缓存， 不管缓存是否是过期的；
+
+
+
+
+
+
+
+

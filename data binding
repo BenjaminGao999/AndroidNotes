@@ -1,0 +1,75 @@
+data binding
+
+
+Error:Execution failed for task ':postdetailapp:transformDexArchiveWithExternalLibsDexMergerForDebug'.
+> java.lang.RuntimeException: java.lang.RuntimeException: com.android.builder.dexing.DexArchiveMergerException: Unable to merge dex
+
+
+v7包和data binding库 冲突
+原因是依赖冲突了；
+
+https://zhuanlan.zhihu.com/p/34536575
+
+
+解决方案
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    dataBinding{
+        enabled = true
+    }
+
+}
+
+dependencies {
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+
+    // 指定v4包的版本， 强制使用整个版本的v4包。
+    implementation "com.android.support:support-v4:${rootProject.ext.supportLibVersion}"
+
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
+}
+
+
+## 如何实现 view自动化绑定呢？
+
+在当前的class(fragment/customLayout)中， 编译后， 进行强制类型转换；
+
+public class PostDetailFragment extends RecyclerBaseFragment<PostDetailPresenter> implements PostDetailContract.IView {
+
+	// 类型指定
+    private FragmentPostDetailBinding mBinding;
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_post_detail;
+    }
+
+    @Override
+    protected void onInflated(BaseFragment<PostDetailPresenter> target, View inflate) {
+        super.onInflated(target, inflate);
+
+        // 绑定
+        mBinding = DataBindingUtil.bind(inflate);
+        mBinding.recyclerViewContent.setLayoutManager(new LinearLayoutManager(getContext()));
+        mBinding.recyclerViewContent.setAdapter(mAdapter);
+
+    }
+
+
+    @Override
+    protected RecyclerViewAdapter createAdapter() {
+        return new PostDetailAdapter();
+    }
+
+    @Override
+    public void addItems(List<RecyclerViewAdapter.RecyclerItem> list) {
+        mAdapter.addRecyclerItemList(list);
+    }
+}
+
+
+
+

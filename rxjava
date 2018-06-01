@@ -1,0 +1,21 @@
+rxjava
+
+##Scheduler
+
+
+ The SubscribeOn operator changes this behavior by specifying a different Scheduler on which the Observable should operate. The ObserveOn operator specifies a different Scheduler that the Observable will use to send notifications to its observers.
+
+
+ As shown in this illustration, the SubscribeOn operator designates which thread the Observable will begin operating on, no matter at what point in the chain of operators that operator is called. ObserveOn, on the other hand, affects the thread that the Observable will use below where that operator appears. For this reason, you may call ObserveOn multiple times at various points during the chain of Observable operators in order to change on which threads certain of those operators operate.
+
+
+
+
+## 指定被观察者和观察者执行的线程
+
+
+## 执行定时操作
+
+someScheduler.schedule(someAction, 500, TimeUnit.MILLISECONDS);
+
+
